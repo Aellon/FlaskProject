@@ -1,0 +1,28 @@
+Country||Type of||Location
+City||Type of||Location
+State||Type of||Location
+Street||Type of||Location
+Zip Code||Type of||Location
+Address||Type of||Location
+Point of Interest||Type of||Location
+Country||Member of||Address
+City||Member of||Address
+State||Member of||Address
+Street||Member of||Address
+Zip Code||Member of||Address
+House Number||Member of||Address
+Apartment Number||Member of||Address
+Airport||Type of||Point of Interest
+Origin Airport||Type of||Airport
+Destination Airport||Type of||Airport
+Apartment Number||Substitute for||House Number
+Person||Has||Address
+Person||Has||Identifier
+Drivers License||Type of||Identifier
+SSN||Type of||Identifier
+Person||Has||Contact
+Email||Type of||Contact
+Phone||Type of||Contact
+Person||Has||Name
+First Name||Member of||Name
+Last Name||Member of||Name

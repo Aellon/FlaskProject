@@ -1,0 +1,23 @@
+Location||True
+Country||False
+City||False
+State||False
+Street||False
+House Number||False
+Apartment Number||False
+Zip Code||False
+Address||False
+Point of Interest||False
+Airport||False
+Origin Airport||False
+Destination Airport||False
+Person||True
+Identifier||False
+Drivers License||False
+SSN||False
+Contact||False
+Email||False
+Phone||False
+Name||False
+First Name||False
+Last Name||False
