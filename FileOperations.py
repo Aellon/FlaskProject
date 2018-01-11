@@ -1,23 +1,17 @@
-import rdflib
-from rdflib import URIRef, BNode, Literal, Namespace
-from rdflib.namespace import RDF, FOAF, RDFS
-from SPARQLWrapper import SPARQLWrapper, JSON
-from rdflib import Graph
-from rdflib.plugins.sparql import prepareQuery
 from collections import OrderedDict
+import rdflib
+from rdflib import URIRef, Namespace
+from rdflib.namespace import RDF, RDFS
 
 
 class Statement:
-
     def __init__(self, subject, predicate, objct):
         self.subject = subject
         self.object = objct
         self.predicate = predicate
 
 
-
 class GraphGenerator:
-
     def __init__(self, file1, file2):
         self.filePath1 = file1
         self.filePath2 = file2
@@ -32,6 +26,7 @@ class GraphGenerator:
         relationList = []
         stmtList = []
         concepts = []
+
         for line in self.conceptFile:
              verbs = line.split('|')
              conceptsMap[verbs[0].replace(" ","")] = verbs[2].rstrip()
@@ -45,10 +40,8 @@ class GraphGenerator:
         self.graph.add((ex.RootConcept, RDF.type, RDFS.Class))
         self.graph.add((ex.Concept, RDFS.subClassOf, ex.RootConcept))
 
-        self.la = relationList
-
         for c in concepts:
-            if(conceptsMap[c] == 'True'):
+            if conceptsMap[c] == 'True':
                 uri = domain + c
                 cnspt = URIRef(uri)
                 self.graph.add((cnspt, RDFS.subClassOf, ex.RootConcept))
@@ -64,31 +57,12 @@ class GraphGenerator:
             self.graph.add((pred, RDFS.domain, ex.RootConcept))
             self.graph.add((pred, RDFS.range, ex.RootConcept))
 
-
         for r in stmtList:
             s = domain + r.subject
             p = domain + r.predicate
             o = domain + r.object
-
             sub = URIRef(s)
             pred = URIRef(p)
             obj = URIRef(o)
-
             self.graph.add((sub, pred, obj))
-
-        #print(self.graph.serialize(destination="lol.ttl", format="turtle"))
         return self.graph
-
-
-
-        #self.graph.parse('lol.ttl', format="turtle")
-        #print(relationList[0].object)
-
-
-
-
-
-
-
-#G = GraphGenerator('seed_concepts.txt', 'seed_relationships.txt')
-#G.generateGraph()
