@@ -17,8 +17,8 @@ class GraphGenerator:
         self.filePath2 = file2
 
     def generateGraph(self):
-        ex = Namespace("http://example.org/")
-        domain = "http://example.org/"
+        ex = Namespace("http://example.org/#")
+        domain = "http://example.org/#"
         self.graph = rdflib.Graph()
         self.conceptFile = open(self.filePath1,'r')
         self.relationFile = open(self.filePath2,'r')
@@ -54,8 +54,8 @@ class GraphGenerator:
             p = domain + rel.predicate
             pred = URIRef(p)
             self.graph.add((pred, RDF.type, RDF.Property))
-            self.graph.add((pred, RDFS.domain, ex.RootConcept))
-            self.graph.add((pred, RDFS.range, ex.RootConcept))
+            self.graph.add((pred, RDFS.domain, ex.Concept))
+            self.graph.add((pred, RDFS.range, ex.Concept))
 
         for r in stmtList:
             s = domain + r.subject
